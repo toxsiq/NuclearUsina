@@ -1,7 +1,6 @@
 package com.nuclearusina.items;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -23,10 +22,10 @@ public class EsqueiroItem {
     public ItemStack create(Skin skin) {
         ItemStack item = new ItemStack(Material.FLINT_AND_STEEL);
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(Component.text("Esqueiro - " + skin.displayName()).color(NamedTextColor.GOLD));
-        meta.lore(List.of(
-                Component.text("Ferramenta da Usina Nuclear.").color(NamedTextColor.GRAY),
-                Component.text("Skin: " + skin.displayName() + " (" + skin.rarity() + ")").color(NamedTextColor.AQUA)
+        meta.setDisplayName(ChatColor.GOLD + "Esqueiro - " + skin.displayName());
+        meta.setLore(List.of(
+                ChatColor.GRAY + "Ferramenta da Usina Nuclear.",
+                ChatColor.AQUA + "Skin: " + skin.displayName() + " (" + skin.rarity() + ")"
         ));
         PersistentDataContainer container = meta.getPersistentDataContainer();
         container.set(key, PersistentDataType.BYTE, (byte) 1);

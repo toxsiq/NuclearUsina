@@ -7,8 +7,7 @@ import com.nuclearusina.menus.EnchantMenu;
 import com.nuclearusina.menus.MenuHolder;
 import com.nuclearusina.menus.MenuType;
 import com.nuclearusina.menus.SkinMenu;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -51,32 +50,32 @@ public class MenuListener implements Listener {
         int aspiradorCost = plugin.getConfig().getInt("enchant-costs.aspirador-base", 15) * (data.aspiradorLevel() + 1);
         if (slot == EnchantMenu.SLOT_URANIUM) {
             if (data.toxins() < uraniumCost) {
-                player.sendMessage(Component.text("Toxinas insuficientes.").color(NamedTextColor.RED));
+                player.sendMessage(ChatColor.RED + "Toxinas insuficientes.");
                 return;
             }
             data.setToxins(data.toxins() - uraniumCost);
             data.setUraniumLevel(data.uraniumLevel() + 1);
-            player.sendMessage(Component.text("Uranium evoluído para nível " + data.uraniumLevel()).color(NamedTextColor.GREEN));
+            player.sendMessage(ChatColor.GREEN + "Uranium evoluído para nível " + data.uraniumLevel());
             player.openInventory(new EnchantMenu().create(data));
         }
         if (slot == EnchantMenu.SLOT_TOXINATOR) {
             if (data.radiation() < toxinatorCost) {
-                player.sendMessage(Component.text("Radiação insuficiente.").color(NamedTextColor.RED));
+                player.sendMessage(ChatColor.RED + "Radiação insuficiente.");
                 return;
             }
             data.setRadiation(data.radiation() - toxinatorCost);
             data.setToxinatorLevel(data.toxinatorLevel() + 1);
-            player.sendMessage(Component.text("Toxinator evoluído para nível " + data.toxinatorLevel()).color(NamedTextColor.GREEN));
+            player.sendMessage(ChatColor.GREEN + "Toxinator evoluído para nível " + data.toxinatorLevel());
             player.openInventory(new EnchantMenu().create(data));
         }
         if (slot == EnchantMenu.SLOT_ASPIRADOR) {
             if (data.radiation() < aspiradorCost) {
-                player.sendMessage(Component.text("Radiação insuficiente.").color(NamedTextColor.RED));
+                player.sendMessage(ChatColor.RED + "Radiação insuficiente.");
                 return;
             }
             data.setRadiation(data.radiation() - aspiradorCost);
             data.setAspiradorLevel(data.aspiradorLevel() + 1);
-            player.sendMessage(Component.text("Aspirador evoluído para nível " + data.aspiradorLevel()).color(NamedTextColor.GREEN));
+            player.sendMessage(ChatColor.GREEN + "Aspirador evoluído para nível " + data.aspiradorLevel());
             player.openInventory(new EnchantMenu().create(data));
         }
     }
@@ -94,12 +93,12 @@ public class MenuListener implements Listener {
         }
         Skin skin = Skin.values()[index];
         if (!data.unlockedSkins().contains(skin)) {
-            player.sendMessage(Component.text("Skin bloqueada.").color(NamedTextColor.RED));
+            player.sendMessage(ChatColor.RED + "Skin bloqueada.");
             return;
         }
         data.setActiveSkin(skin);
         updateEsqueiroInHand(player, skin);
-        player.sendMessage(Component.text("Skin ativa: " + skin.displayName()).color(NamedTextColor.GREEN));
+        player.sendMessage(ChatColor.GREEN + "Skin ativa: " + skin.displayName());
         player.openInventory(new SkinMenu().create(data.unlockedSkins(), data.activeSkin()));
     }
 

@@ -1,7 +1,6 @@
 package com.nuclearusina.items;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -23,10 +22,10 @@ public class SkinActivatorItem {
     public ItemStack create(Skin skin) {
         ItemStack item = new ItemStack(Material.FLINT_AND_STEEL);
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(Component.text("Ativador de Skin - " + skin.displayName()).color(NamedTextColor.LIGHT_PURPLE));
-        meta.lore(List.of(
-                Component.text("Clique direito para desbloquear.").color(NamedTextColor.GRAY),
-                Component.text("Skin: " + skin.displayName()).color(NamedTextColor.AQUA)
+        meta.setDisplayName(ChatColor.LIGHT_PURPLE + "Ativador de Skin - " + skin.displayName());
+        meta.setLore(List.of(
+                ChatColor.GRAY + "Clique direito para desbloquear.",
+                ChatColor.AQUA + "Skin: " + skin.displayName()
         ));
         PersistentDataContainer container = meta.getPersistentDataContainer();
         container.set(activatorKey, PersistentDataType.BYTE, (byte) 1);

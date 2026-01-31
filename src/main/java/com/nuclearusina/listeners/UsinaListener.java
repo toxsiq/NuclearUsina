@@ -7,9 +7,8 @@ import com.nuclearusina.items.Skin;
 import com.nuclearusina.menus.EnchantMenu;
 import com.nuclearusina.region.TntMarker;
 import com.nuclearusina.region.UsinaRegion;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -22,8 +21,8 @@ import org.bukkit.event.block.TNTPrimeEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayDeque;
 import java.util.HashSet;
@@ -150,12 +149,12 @@ public class UsinaListener implements Listener {
         }
         Block block = event.getClickedBlock();
         if (!region.isInside(block.getLocation()) || !marker.isMarked(block)) {
-            player.sendMessage(Component.text("Essa TNT não pertence à Usina.").color(NamedTextColor.RED));
+            player.sendMessage(ChatColor.RED + "Essa TNT não pertence à Usina.");
             event.setCancelled(true);
             return;
         }
         if (!canBreak(player)) {
-            player.sendMessage(Component.text("Aguarde antes de quebrar outra TNT.").color(NamedTextColor.YELLOW));
+            player.sendMessage(ChatColor.YELLOW + "Aguarde antes de quebrar outra TNT.");
             event.setCancelled(true);
             return;
         }
